@@ -10,6 +10,8 @@
     Player One rolls as many times as s/he wants by clicking the "Player One Rolls" button. Rolling a 7 or an 11 scores a point. Rolling snake eyes (one pip on each die) subtracts a point. After Player One decides to stop rolling, Player Two then rolls the same number of times as Player One. After both players have the same number of rolls, their scores are compared and a payout is calculated.
     </p>
 
+    <p id="winMessage"><b>Who is going to win?</b></p>
+
     <ul>
     <li>Player One's Balance: <div id="oldBalanceOne">0</div></li>
     <li>Player One's Rolls: <div id="oldRollCountOne">0</div></li>
@@ -20,8 +22,8 @@
     <li>Player Two's Rolls: <div id="oldRollCountTwo">0</div></li>
     </ul>
 
-    <button onclick="dice.updateBalOne(dice.die1(), dice.die2());dice.updateRollsOne(1);">Player One Rolls</button>
-    <button onclick="dice.updateBalTwo(dice.die1(), dice.die2());dice.updateRollsTwo(1);">Player Two Rolls</button>
+    <button id="playerOneRollButton" onclick="dice.updateBalOne(dice.die1(), dice.die2());dice.updateRollsOne(1);">Player One Rolls</button>
+    <button id="playerTwoRollButton" onclick="dice.updateBalTwo(dice.die1(), dice.die2());dice.updateRollsTwo(1);">Player Two Rolls</button>
 
     <img id="diceOneImage" src='http://www.wpclipart.com/recreation/games/dice/die_face_1.png'>
     <img id="diceTwoImage" src='http://www.wpclipart.com/recreation/games/dice/die_face_1.png'>
@@ -64,6 +66,9 @@
         document.getElementById("oldBalanceTwo").innerHTML = oldBalanceTwo;
         document.getElementById("diceOneImage").src = "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice1 + ".png";
         document.getElementById("diceTwoImage").src = "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice2 + ".png";
+        if(dice.winCheck()) {
+          dice.winCalc();
+        }
       }
     },
     updateRollsOne: function(roll) {
@@ -72,10 +77,15 @@
     },
     updateRollsTwo: function(roll) {
       if (dice.winCheck()) {
-        return false;
+        document.getElementById("playerTwoRollButton").disabled = 'disabled';
       } else {
       oldRollCountTwo += roll;
       document.getElementById("oldRollCountTwo").innerHTML = oldRollCountTwo;
+      if (dice.winCheck()) {
+        dice.winCalc();
+        document.getElementById("playerTwoRollButton").disabled = 'disabled';
+      } else {
+      }
       }
     },
     winCheck: function() {
@@ -88,13 +98,13 @@
     winCalc: function() {
       var winnings = oldBalanceOne - oldBalanceTwo;
         if (winnings > 0) {
-          alert("Player Two owes Player One $" + Math.abs(winnings));
+          document.getElementById("winMessage").innerHTML = ("<b>Player Two owes Player One $" + Math.abs(winnings) + "</b>");
         }
         else if (winnings < 0) {
-          alert("Player One owes Player Two $" + Math.abs(winnings));
+          document.getElementById("winMessage").innerHTML = ("<b>Player One owes Player Two $" + Math.abs(winnings) + "</b>");
         }
         else {
-          alert("Player One and Player Two are even!");
+          document.getElementById("winMessage").innerHTML = ("<b>Player One and Player Two are even!</b>");
         }
       }
   };
