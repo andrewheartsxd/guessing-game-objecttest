@@ -11,7 +11,6 @@
     </p>
 
     <p id="winMessage"><b>Who is going to win?</b></p>
-
     <ul>
     <li>Player One's Balance: <div id="oldBalanceOne">0</div></li>
     <li>Player One's Rolls: <div id="oldRollCountOne">0</div></li>
@@ -24,9 +23,11 @@
 
     <button id="playerOneRollButton" onclick="dice.updateBalOne(dice.die1(), dice.die2());dice.updateRollsOne(1);">Player One Rolls</button>
     <button id="playerTwoRollButton" onclick="dice.updateBalTwo(dice.die1(), dice.die2());dice.updateRollsTwo(1);">Player Two Rolls</button>
+    <button id="reset" onclick="dice.reset();">Reset</button>
 
-    <img id="diceOneImage" src='http://www.wpclipart.com/recreation/games/dice/die_face_1.png'>
-    <img id="diceTwoImage" src='http://www.wpclipart.com/recreation/games/dice/die_face_1.png'>
+
+    <img id="diceOneImage" style="width: 25%; height: 25%" src='http://www.wpclipart.com/recreation/games/dice/die_face_1.png'>
+    <img id="diceTwoImage" style="width: 25%; height: 25%" src='http://www.wpclipart.com/recreation/games/dice/die_face_1.png'>
 
 
   <script>
@@ -106,7 +107,10 @@
         else {
           document.getElementById("winMessage").innerHTML = ("<b>Player One and Player Two are even!</b>");
         }
-      }
+      },
+    reset: function () {
+      location.reload();
+    }
   };
 
   </script>
