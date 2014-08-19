@@ -1,0 +1,24 @@
+.diceImage {
+  position: relative;
+  top: 0px;
+  display: inline-block;
+  /*margin-left: 250px;*/
+  width: 10%;
+
+}
+
+.rollButton {
+border-radius: 25px;
+background: #ccc;
+box-shadow: 3px 3px 3px #888888;
+color: #fff;
+font-family: Arial, sans-serif;
+text-align: center;
+display: inline-block;
+padding: 1em 2em 1em 2em;
+background-color: blue;
+}
+
+.red {
+    background-color: #CC0000;
+  }
