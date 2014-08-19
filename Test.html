@@ -1,119 +1,48 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
     <title>Winnin' Kittens!</title>
   </head>
 
   <body>
-    <center><h1>Do you want to roll?</h1></center>
-    <p><b>How to Play:</b>
-    Player One rolls as many times as s/he wants by clicking the "Player One Rolls" button. Rolling a 7 or an 11 scores a point. Rolling snake eyes (one pip on each die) subtracts a point. After Player One decides to stop rolling, Player Two then rolls the same number of times as Player One. After both players have the same number of rolls, their scores are compared and a payout is calculated.
-    </p>
+    <div>
+      <center><h1>Do you want to roll?</h1></center>
+      <p><b>How to Play:</b>
+      Player One rolls as many times as s/he wants by clicking the "Player One Rolls" button. Rolling a 7 or an 11 scores a point. Rolling snake eyes (one pip on each die) subtracts a point. After Player One decides to stop rolling, Player Two then rolls the same number of times as Player One. After both players have the same number of rolls, their scores are compared and a payout is calculated.
+      </p>
+    </div>
 
-    <p id="winMessage"><b>Who is going to win?</b></p>
-    <ul>
-    <li>Player One's Balance: <div id="oldBalanceOne">0</div></li>
-    <li>Player One's Rolls: <div id="oldRollCountOne">0</div></li>
-    </ul>
+    <div>
+      <p id="winMessage"><b>Who is going to win?</b></p>
+      <ul>
+      <li>Player One's Balance: <div id="oldBalanceOne">0</div></li>
+      <li>Player One's Rolls: <div id="oldRollCountOne">0</div></li>
+      </ul>
 
-    <ul>
-    <li>Player Two's Balance: <div id="oldBalanceTwo">0</div></li>
-    <li>Player Two's Rolls: <div id="oldRollCountTwo">0</div></li>
-    </ul>
+      <ul>
+      <li>Player Two's Balance: <div id="oldBalanceTwo">0</div></li>
+      <li>Player Two's Rolls: <div id="oldRollCountTwo">0</div></li>
+      </ul>
+    </div>
 
-    <button id="playerOneRollButton" onclick="dice.updateBalOne(dice.die1(), dice.die2());dice.updateRollsOne(1);">Player One Rolls</button>
-    <button id="playerTwoRollButton" onclick="dice.updateBalTwo(dice.die1(), dice.die2());dice.updateRollsTwo(1);">Player Two Rolls</button>
-    <button id="reset" onclick="dice.reset();">Reset</button>
+    <div>
+    <img class="diceImage" id="diceOneImage" src='http://www.wpclipart.com/recreation/games/dice/die_face_1.png'>
+    <img class="diceImage" id="diceTwoImage" src='http://www.wpclipart.com/recreation/games/dice/die_face_1.png'>
+    </div>
 
-
-    <img id="diceOneImage" style="width: 25%; height: 25%" src='http://www.wpclipart.com/recreation/games/dice/die_face_1.png'>
-    <img id="diceTwoImage" style="width: 25%; height: 25%" src='http://www.wpclipart.com/recreation/games/dice/die_face_1.png'>
-
-
-  <script>
-
-  var oldBalanceOne = Number(document.getElementById("oldBalanceOne").textContent);
-  var oldRollCountOne = Number(document.getElementById("oldRollCountOne").textContent);
-  var oldBalanceTwo = Number(document.getElementById("oldBalanceTwo").textContent);
-  var oldRollCountTwo = Number(document.getElementById("oldRollCountTwo").textContent);
+    <div>
+    <button id="playerOneRollButton" class='rollButton'>Player One Roll</button>
+    <button id="playerTwoRollButton" class='rollButton'>Player Two Roll</button>
+    <button id="reset" class='rollButton' onclick="dice.reset();">Reset</button>
+    </div>
 
 
-  var dice = {
-    die1: function () {
-      return Math.floor((Math.random() * 6) + 1);
-    },
-    die2: function () {
-      return Math.floor((Math.random() * 6) + 1);
-    },
-    updateBalOne: function (dice1, dice2) {
-      if (dice1 + dice2 === 7 || dice1 + dice2 === 11) {
-          oldBalanceOne += 1;
-      } else if (dice1 + dice2 === 2) {
-          oldBalanceOne -= 1;
-      }
-      document.getElementById("oldBalanceOne").innerHTML = oldBalanceOne;
-      document.getElementById("diceOneImage").src = "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice1 + ".png";
-      document.getElementById("diceTwoImage").src = "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice2 + ".png";
-    },
-    updateBalTwo: function (dice1, dice2) {
-      if (dice.winCheck()) {
-        dice.winCalc();
-      } else {
-        if (dice1 + dice2 === 7 || dice1 + dice2 === 11) {
-            oldBalanceTwo += 1;
-        } else if (dice1 + dice2 === 2) {
-            oldBalanceTwo -= 1;
-        }
-        document.getElementById("oldBalanceTwo").innerHTML = oldBalanceTwo;
-        document.getElementById("diceOneImage").src = "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice1 + ".png";
-        document.getElementById("diceTwoImage").src = "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice2 + ".png";
-        if(dice.winCheck()) {
-          dice.winCalc();
-        }
-      }
-    },
-    updateRollsOne: function(roll) {
-      oldRollCountOne += roll;
-      document.getElementById("oldRollCountOne").innerHTML = oldRollCountOne;
-    },
-    updateRollsTwo: function(roll) {
-      if (dice.winCheck()) {
-        document.getElementById("playerTwoRollButton").disabled = 'disabled';
-      } else {
-      oldRollCountTwo += roll;
-      document.getElementById("oldRollCountTwo").innerHTML = oldRollCountTwo;
-      if (dice.winCheck()) {
-        dice.winCalc();
-        document.getElementById("playerTwoRollButton").disabled = 'disabled';
-      } else {
-      }
-      }
-    },
-    winCheck: function() {
-      if (oldRollCountTwo === oldRollCountOne) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-    winCalc: function() {
-      var winnings = oldBalanceOne - oldBalanceTwo;
-        if (winnings > 0) {
-          document.getElementById("winMessage").innerHTML = ("<b>Player Two owes Player One $" + Math.abs(winnings) + "</b>");
-        }
-        else if (winnings < 0) {
-          document.getElementById("winMessage").innerHTML = ("<b>Player One owes Player Two $" + Math.abs(winnings) + "</b>");
-        }
-        else {
-          document.getElementById("winMessage").innerHTML = ("<b>Player One and Player Two are even!</b>");
-        }
-      },
-    reset: function () {
-      location.reload();
-    }
-  };
 
-  </script>
 
   </body>
+  <footer>
+    <script src="javascript.js"></script>
+  </footer>
 </html>
