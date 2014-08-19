@@ -1,0 +1,23 @@
+Player One Roll Button
+
+<p class='playerOneRoll'>Player One Roll</p>
+
+.yourClassName {
+border-radius: 25px;
+background: #ccc;
+box-shadow: 10px 10px 5px #888888;
+color: #fff;
+font-family: Arial, sans-serif;
+text-align: center;
+display: inline-block;
+padding: 1em 2em 1em 2em;
+background-color: blue;
+}
+
+$("playerOneRollButton").click(function() {
+  $("div").addClass("red");
+  });
+
+.red {
+    background-color: #CC0000;
+  }
