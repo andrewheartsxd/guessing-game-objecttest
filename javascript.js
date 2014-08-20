@@ -114,15 +114,14 @@ $('#playerOneRollButton').click(function() {
 
   $('.diceImageContainer').animate({top: "-=1000px"}, 0);
   $('.diceImageContainer').animate({top: "+=1000px"}, 'fast')
-  // .fadeOut('fast', function() {
-  //   for(i = 0; i < 10000; i++) {
-  //     $('#diceOneImage').attr("src", "http://www.wpclipart.com/recreation/games/dice/die_face_" + Math.floor((Math.random() * 6) + 1) + ".png").fadeIn('slow')
-  //     $('#diceTwoImage').attr("src", "http://www.wpclipart.com/recreation/games/dice/die_face_" + Math.floor((Math.random() * 6) + 1) + ".png").fadeIn('slow')
-  //   }
-  // })
-  // .fadeIn('fast')
+    for(i = 0; i < 10000; i++) {
+      $('#diceOneImage').attr("src", "http://www.wpclipart.com/recreation/games/dice/die_face_" + Math.floor((Math.random() * 6) + 1) + ".png")
+      $('#diceTwoImage').attr("src", "http://www.wpclipart.com/recreation/games/dice/die_face_" + Math.floor((Math.random() * 6) + 1) + ".png")
 
-  // $('.diceImageContainer').effect("bounce", {times: 3}, 500);
+  }
+
+
+  $('.diceImageContainer').effect("bounce", {times: 3}, 500);
 
   $('#diceOneImage').attr("src", "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice1Val + ".png");
   $('#diceTwoImage').attr("src", "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice2Val + ".png");
