@@ -87,17 +87,28 @@ var dice = {
 };
 
 $('#playerOneRollButton').click(function() {
-  $('.diceImage').animate({top: "-=1000px"}, 0)
-  $('.diceImage').animate({top: "+=1000px"}, 'slow');
 
   dice.updateBalOne(dice.die1(), dice.die2());
   dice.updateRollsOne(1);
 
+  $('.diceImageContainer').animate({top: "-=1000px"}, 0)
+  $('.diceImageContainer').animate({top: "+=1000px"}, 'slow');
+
+
+  // for(i = 0; i < 500; i++) {
+
+  //   $('#diceOneImage').attr("src", "http://www.wpclipart.com/recreation/games/dice/die_face_" + Math.floor((Math.random() * 6) + 1) + ".png")
+
+  // }
+
+  // $('#diceOneImage').attr("src", "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice1 + ".png")
+  // $('.diceImageContainer').effect('bounce', {times:3}, 1000);
+
 })
 
 $('#playerTwoRollButton').click(function() {
-  $('.diceImage').animate({top: "-=1000px"}, 0)
-  $('.diceImage').animate({top: "+=1000px"}, 'slow');
+  $('.diceImageContainer').animate({top: "-=1000px"}, 0)
+  $('.diceImageContainer').animate({top: "+=1000px"}, 'slow');
 
   dice.updateBalTwo(dice.die1(), dice.die2());
   dice.updateRollsTwo(1);
@@ -108,4 +119,5 @@ $(".rollButton").click(function() {
   $(this).addClass("red");
   $(this).removeClass("red");
   });
+
 
