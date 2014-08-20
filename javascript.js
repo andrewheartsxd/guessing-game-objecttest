@@ -21,11 +21,12 @@ var dice = {
     } else if (dice1 + dice2 === 2) {
         oldBalanceOne -= 1;
     }
-    // oldBalanceOne = Number($('#oldBalanceOne').text());
-    document.getElementById("oldBalanceOne").innerHTML = oldBalanceOne;
-    // $('#diceOneImage').prop('src') = "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice1 + ".png";
-    document.getElementById("diceOneImage").src = "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice1 + ".png";
-    document.getElementById("diceTwoImage").src = "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice2 + ".png";
+    Number($('#oldBalanceOne').text(oldBalanceOne))
+    // document.getElementById("oldBalanceOne").innerHTML = oldBalanceOne;
+    $('#diceOneImage').attr('src', "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice1 + ".png");
+    // document.getElementById("diceOneImage").src = "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice1 + ".png";
+    $('#diceTwoImage').attr('src', "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice2 + ".png");
+    // document.getElementById("diceTwoImage").src = "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice2 + ".png";
   },
   updateBalTwo: function (dice1, dice2) {
     if (dice.winCheck()) {
@@ -36,9 +37,13 @@ var dice = {
       } else if (dice1 + dice2 === 2) {
           oldBalanceTwo -= 1;
       }
-      document.getElementById("oldBalanceTwo").innerHTML = oldBalanceTwo;
-      document.getElementById("diceOneImage").src = "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice1 + ".png";
-      document.getElementById("diceTwoImage").src = "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice2 + ".png";
+      Number($('#oldBalanceTwo').text(oldBalanceTwo))
+      // document.getElementById("oldBalanceTwo").innerHTML = oldBalanceTwo;
+      $('#diceOneImage').attr('src', "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice1 + ".png");
+      // document.getElementById("diceOneImage").src = "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice1 + ".png";
+      $('#diceTwoImage').attr('src', "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice2 + ".png");
+      // document.getElementById("diceTwoImage").src = "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice2 + ".png";
+
       if(dice.winCheck()) {
         dice.winCalc();
       }
@@ -50,16 +55,13 @@ var dice = {
   },
   updateRollsTwo: function(roll) {
     if (dice.winCheck()) {
-      document.getElementById("playerTwoRollButton").disabled = 'disabled';
-    } else {
-    oldRollCountTwo += roll;
-    document.getElementById("oldRollCountTwo").innerHTML = oldRollCountTwo;
-    if (dice.winCheck()) {
       dice.winCalc();
       document.getElementById("playerTwoRollButton").disabled = 'disabled';
       document.getElementById("playerOneRollButton").disabled = 'disabled';
-    } else {
     }
+    else {
+      oldRollCountTwo += roll;
+      document.getElementById("oldRollCountTwo").innerHTML = oldRollCountTwo;
     }
   },
   winCheck: function() {
@@ -91,27 +93,30 @@ $('#playerOneRollButton').click(function() {
   dice.updateBalOne(dice.die1(), dice.die2());
   dice.updateRollsOne(1);
 
-  $('.diceImageContainer').animate({top: "-=1000px"}, 0)
-  $('.diceImageContainer').animate({top: "+=1000px"}, 'slow');
+  $('.diceImageContainer').animate({top: "-=1000px"}, 0);
 
+  $('.diceImageContainer').animate({top: "+=1000px"}, 'fast')
+  // .fadeOut('fast', function() {
+  //   for(i = 0; i < 10000; i++) {
+  //     $('#diceOneImage').attr("src", "http://www.wpclipart.com/recreation/games/dice/die_face_" + Math.floor((Math.random() * 6) + 1) + ".png").fadeIn('slow')
+  //   }
+  // })
 
-  // for(i = 0; i < 500; i++) {
-
-  //   $('#diceOneImage').attr("src", "http://www.wpclipart.com/recreation/games/dice/die_face_" + Math.floor((Math.random() * 6) + 1) + ".png")
-
-  // }
+  // $('.diceImageContainer').effect("bounce", {times: 3}, 500);
 
   // $('#diceOneImage').attr("src", "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice1 + ".png")
-  // $('.diceImageContainer').effect('bounce', {times:3}, 1000);
+  $('.diceImageContainer').effect('bounce', {times:3}, 500);
 
 })
 
 $('#playerTwoRollButton').click(function() {
-  $('.diceImageContainer').animate({top: "-=1000px"}, 0)
-  $('.diceImageContainer').animate({top: "+=1000px"}, 'slow');
 
   dice.updateBalTwo(dice.die1(), dice.die2());
   dice.updateRollsTwo(1);
+
+  $('.diceImageContainer').animate({top: "-=1000px"}, 0);
+  $('.diceImageContainer').animate({top: "+=1000px"}, 'fast');
+  $('.diceImageContainer').effect('bounce', {times:3}, 500);
 
 })
 
