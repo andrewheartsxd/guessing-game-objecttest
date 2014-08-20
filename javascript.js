@@ -56,16 +56,22 @@ var dice = {
   },
   updateRollsTwo: function(roll) {
     if (dice.winCheck()) {
-      dice.winCalc();
-      $('#playerTwoRollButton').prop('disabled', true)
       $('#playerOneRollButton').prop('disabled', true)
-      // document.getElementById("playerTwoRollButton").disabled = 'disabled';
+      $('#playerTwoRollButton').prop('disabled', true)
       // document.getElementById("playerOneRollButton").disabled = 'disabled';
+      // document.getElementById("playerTwoRollButton").disabled = 'disabled';
     }
     else {
       oldRollCountTwo += roll;
       // document.getElementById("oldRollCountTwo").innerHTML = oldRollCountTwo;
       $('#oldRollCountTwo').text(oldRollCountTwo);
+      if(dice.winCheck()) {
+        dice.winCalc();
+        $('#playerOneRollButton').prop('disabled', true)
+        $('#playerTwoRollButton').prop('disabled', true)
+        // document.getElementById("playerOneRollButton").disabled = 'disabled';
+        // document.getElementById("playerTwoRollButton").disabled = 'disabled';
+      }
     }
   },
   winCheck: function() {
