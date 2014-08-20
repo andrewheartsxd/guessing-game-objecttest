@@ -56,8 +56,8 @@ var dice = {
   },
   updateRollsTwo: function(roll) {
     if (dice.winCheck()) {
-      $('#playerOneRollButton').prop('disabled', true)
-      $('#playerTwoRollButton').prop('disabled', true)
+      $('#playerOneRollButton').prop('disabled', true).addClass("grey")
+      $('#playerTwoRollButton').prop('disabled', true).addClass("grey")
       // document.getElementById("playerOneRollButton").disabled = 'disabled';
       // document.getElementById("playerTwoRollButton").disabled = 'disabled';
     }
@@ -67,8 +67,8 @@ var dice = {
       $('#oldRollCountTwo').text(oldRollCountTwo);
       if(dice.winCheck()) {
         dice.winCalc();
-        $('#playerOneRollButton').prop('disabled', true)
-        $('#playerTwoRollButton').prop('disabled', true)
+        $('#playerOneRollButton').prop('disabled', true).addClass("grey")
+        $('#playerTwoRollButton').prop('disabled', true).addClass("grey")
         // document.getElementById("playerOneRollButton").disabled = 'disabled';
         // document.getElementById("playerTwoRollButton").disabled = 'disabled';
       }
@@ -84,13 +84,16 @@ var dice = {
   winCalc: function() {
     var winnings = oldBalanceOne - oldBalanceTwo;
       if (winnings > 0) {
-        document.getElementById("winMessage").innerHTML = ("<b>Player Two owes Player One $" + Math.abs(winnings) + "</b>");
+        $('#winMessage').text("Player Two owes Player One $" + Math.abs(winnings) + "!")
+        // document.getElementById("winMessage").innerHTML = ("<b>Player Two owes Player One $" + Math.abs(winnings) + "</b>");
       }
       else if (winnings < 0) {
-        document.getElementById("winMessage").innerHTML = ("<b>Player One owes Player Two $" + Math.abs(winnings) + "</b>");
+        $('#winMessage').text("<b>Player One owes Player Two $" + Math.abs(winnings) + "</b>")
+        // document.getElementById("winMessage").innerHTML = ("Player One owes Player Two $" + Math.abs(winnings) + "!");
       }
       else {
-        document.getElementById("winMessage").innerHTML = ("<b>Player One and Player Two are even!</b>");
+        $('#winMessage').text("Player One and Player Two are even!")
+        // document.getElementById("winMessage").innerHTML = ("<b>Player One and Player Two are even!</b>");
       }
     },
   reset: function () {
@@ -104,7 +107,6 @@ $('#playerOneRollButton').click(function() {
   dice.updateRollsOne(1);
 
   $('.diceImageContainer').animate({top: "-=1000px"}, 0);
-
   $('.diceImageContainer').animate({top: "+=1000px"}, 'fast')
   // .fadeOut('fast', function() {
   //   for(i = 0; i < 10000; i++) {
@@ -129,10 +131,4 @@ $('#playerTwoRollButton').click(function() {
   $('.diceImageContainer').effect('bounce', {times:3}, 500);
 
 })
-
-$(".rollButton").click(function() {
-  $(this).addClass("red");
-  $(this).removeClass("red");
-  });
-
 
