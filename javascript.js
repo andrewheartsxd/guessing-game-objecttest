@@ -51,17 +51,27 @@ var dice = {
   },
   updateRollsOne: function(roll) {
     oldRollCountOne += roll;
-    document.getElementById("oldRollCountOne").innerHTML = oldRollCountOne;
+    // document.getElementById("oldRollCountOne").innerHTML = oldRollCountOne;
+    $('#oldRollCountOne').text(oldRollCountOne);
   },
   updateRollsTwo: function(roll) {
     if (dice.winCheck()) {
-      dice.winCalc();
-      document.getElementById("playerTwoRollButton").disabled = 'disabled';
-      document.getElementById("playerOneRollButton").disabled = 'disabled';
+      $('#playerOneRollButton').prop('disabled', true)
+      $('#playerTwoRollButton').prop('disabled', true)
+      // document.getElementById("playerOneRollButton").disabled = 'disabled';
+      // document.getElementById("playerTwoRollButton").disabled = 'disabled';
     }
     else {
       oldRollCountTwo += roll;
-      document.getElementById("oldRollCountTwo").innerHTML = oldRollCountTwo;
+      // document.getElementById("oldRollCountTwo").innerHTML = oldRollCountTwo;
+      $('#oldRollCountTwo').text(oldRollCountTwo);
+      if(dice.winCheck()) {
+        dice.winCalc();
+        $('#playerOneRollButton').prop('disabled', true)
+        $('#playerTwoRollButton').prop('disabled', true)
+        // document.getElementById("playerOneRollButton").disabled = 'disabled';
+        // document.getElementById("playerTwoRollButton").disabled = 'disabled';
+      }
     }
   },
   winCheck: function() {
