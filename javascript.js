@@ -7,13 +7,19 @@ var oldBalanceTwo = Number($('#oldBalanceTwo').text());
 // var oldRollCountTwo = Number(document.getElementById("oldRollCountTwo").textContent);
 var oldRollCountTwo = Number($('#oldRollCountTwo').text());
 
+var dice1Val = 0
+var dice2Val = 0
 
 var dice = {
   die1: function () {
-    return Math.floor((Math.random() * 6) + 1);
+    dice1Val = Math.floor((Math.random() * 6) + 1);
+    console.log(dice1Val);
+    return dice1Val;
   },
   die2: function () {
-    return Math.floor((Math.random() * 6) + 1);
+    dice2Val = Math.floor((Math.random() * 6) + 1);
+    console.log(dice2Val);
+    return dice2Val;
   },
   updateBalOne: function (dice1, dice2) {
     if (dice1 + dice2 === 7 || dice1 + dice2 === 11) {
@@ -23,9 +29,9 @@ var dice = {
     }
     Number($('#oldBalanceOne').text(oldBalanceOne))
     // document.getElementById("oldBalanceOne").innerHTML = oldBalanceOne;
-    $('#diceOneImage').attr('src', "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice1 + ".png");
+    // $('#diceOneImage').attr('src', "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice1 + ".png");
     // document.getElementById("diceOneImage").src = "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice1 + ".png";
-    $('#diceTwoImage').attr('src', "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice2 + ".png");
+    // $('#diceTwoImage').attr('src', "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice2 + ".png");
     // document.getElementById("diceTwoImage").src = "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice2 + ".png";
   },
   updateBalTwo: function (dice1, dice2) {
@@ -39,9 +45,9 @@ var dice = {
       }
       Number($('#oldBalanceTwo').text(oldBalanceTwo))
       // document.getElementById("oldBalanceTwo").innerHTML = oldBalanceTwo;
-      $('#diceOneImage').attr('src', "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice1 + ".png");
+      // $('#diceOneImage').attr('src', "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice1 + ".png");
       // document.getElementById("diceOneImage").src = "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice1 + ".png";
-      $('#diceTwoImage').attr('src', "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice2 + ".png");
+      // $('#diceTwoImage').attr('src', "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice2 + ".png");
       // document.getElementById("diceTwoImage").src = "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice2 + ".png";
 
       if(dice.winCheck()) {
@@ -56,7 +62,7 @@ var dice = {
   },
   updateRollsTwo: function(roll) {
     if (dice.winCheck()) {
-      $('#playerOneRollButton').prop('disabled', true).addClass("grey")
+      // $('#playerOneRollButton').prop('disabled', true).addClass("grey")
       $('#playerTwoRollButton').prop('disabled', true).addClass("grey")
       // document.getElementById("playerOneRollButton").disabled = 'disabled';
       // document.getElementById("playerTwoRollButton").disabled = 'disabled';
@@ -67,7 +73,7 @@ var dice = {
       $('#oldRollCountTwo').text(oldRollCountTwo);
       if(dice.winCheck()) {
         dice.winCalc();
-        $('#playerOneRollButton').prop('disabled', true).addClass("grey")
+        // $('#playerOneRollButton').prop('disabled', true).addClass("grey")
         $('#playerTwoRollButton').prop('disabled', true).addClass("grey")
         // document.getElementById("playerOneRollButton").disabled = 'disabled';
         // document.getElementById("playerTwoRollButton").disabled = 'disabled';
@@ -88,7 +94,7 @@ var dice = {
         // document.getElementById("winMessage").innerHTML = ("<b>Player Two owes Player One $" + Math.abs(winnings) + "</b>");
       }
       else if (winnings < 0) {
-        $('#winMessage').text("<b>Player One owes Player Two $" + Math.abs(winnings) + "</b>")
+        $('#winMessage').text("Player One owes Player Two $" + Math.abs(winnings) + "!")
         // document.getElementById("winMessage").innerHTML = ("Player One owes Player Two $" + Math.abs(winnings) + "!");
       }
       else {
@@ -111,23 +117,30 @@ $('#playerOneRollButton').click(function() {
   // .fadeOut('fast', function() {
   //   for(i = 0; i < 10000; i++) {
   //     $('#diceOneImage').attr("src", "http://www.wpclipart.com/recreation/games/dice/die_face_" + Math.floor((Math.random() * 6) + 1) + ".png").fadeIn('slow')
+  //     $('#diceTwoImage').attr("src", "http://www.wpclipart.com/recreation/games/dice/die_face_" + Math.floor((Math.random() * 6) + 1) + ".png").fadeIn('slow')
   //   }
   // })
+  // .fadeIn('fast')
 
   // $('.diceImageContainer').effect("bounce", {times: 3}, 500);
 
-  // $('#diceOneImage').attr("src", "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice1 + ".png")
+  $('#diceOneImage').attr("src", "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice1Val + ".png");
+  $('#diceTwoImage').attr("src", "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice2Val + ".png");
   $('.diceImageContainer').effect('bounce', {times:3}, 500);
 
 })
 
 $('#playerTwoRollButton').click(function() {
 
+  $('#playerOneRollButton').prop('disabled', true).addClass("grey");
+
   dice.updateBalTwo(dice.die1(), dice.die2());
   dice.updateRollsTwo(1);
 
   $('.diceImageContainer').animate({top: "-=1000px"}, 0);
   $('.diceImageContainer').animate({top: "+=1000px"}, 'fast');
+  $('#diceOneImage').attr("src", "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice1Val + ".png");
+  $('#diceTwoImage').attr("src", "http://www.wpclipart.com/recreation/games/dice/die_face_" + dice2Val + ".png");
   $('.diceImageContainer').effect('bounce', {times:3}, 500);
 
 })
