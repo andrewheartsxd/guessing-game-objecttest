@@ -1,10 +1,22 @@
 .diceImage {
+/*  position: relative;
+  top: 0px;
+  display: inline-block;*/
+  /*display: block;*/
+  /*margin: 0 auto;*/
+/*  margin-left: 250px;*/
+  /*width: 35%;*/
+  width: 49%;
+}
+
+.diceImageContainer {
   position: relative;
   top: 0px;
-  display: inline-block;
-  /*margin-left: 250px;*/
-  width: 10%;
-
+  /*display: inline;*/
+/*  display: block;*/
+  /*margin*/
+  margin: 0 auto;
+  width: 40%;
 }
 
 .rollButton {
