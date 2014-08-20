@@ -1,3 +1,11 @@
+h1 {
+  text-align: center;
+}
+
+.bold {
+  font-weight: bold;
+}
+
 .diceImage {
 /*  position: relative;
   top: 0px;
@@ -20,17 +28,36 @@
 }
 
 .rollButton {
-border-radius: 25px;
-background: #ccc;
-box-shadow: 3px 3px 3px #888888;
-color: #fff;
-font-family: Arial, sans-serif;
-text-align: center;
-display: inline-block;
-padding: 1em 2em 1em 2em;
-background-color: blue;
+  border-radius: 25px;
+
+  box-shadow: 3px 3px 3px #888888;
+
+  font-family: Arial, sans-serif;
+  text-align: center;
+  display: inline-block;
+  padding: 1em 2em 1em 2em;
+  color: #FFFFFF;
+  border: solid 1px #da7c0c;
+  background: #B80000;
+  background: -webkit-gradient(linear, left top, left bottom, from(#ff0000), to(#f800000));
+  background: -moz-linear-gradient(top,  #ff0000,  #800000);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0000', endColorstr='#800000');
 }
 
-.red {
-    background-color: #CC0000;
+.grey {
+    background-color: #6B7DA1;
+    color: #333438;
+    border: solid 1px #333438;
   }
+
+#winMessage {
+  font-weight: bold;
+}
+
+.inline {
+  display: inline-block;
+}
+
+.centerMe {
+  text-align: center;
+}

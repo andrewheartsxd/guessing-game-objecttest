@@ -3,41 +3,59 @@
   <head>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
-
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="skeleton.css">
     <link rel="stylesheet" type="text/css" href="styles.css">
     <title>E Z Craps</title>
   </head>
 
   <body>
-    <div>
-      <center><h1>Do you want to roll?</h1></center>
-      <p><b>How to Play:</b>
-      Player One rolls as many times as s/he wants by clicking the "Player One Rolls" button. Rolling a 7 or an 11 scores a point. Rolling snake eyes (one pip on each die) subtracts a point. After Player One decides to stop rolling, Player Two then rolls the same number of times as Player One. After both players have the same number of rolls, their scores are compared and a payout is calculated.
-      </p>
+    <div class="container">
+      <div class="sixteen columns">
+        <h1>Do you want to roll?</h1>
+        <p class="bold">How to Play:</p>
+        <p>
+          Player One rolls as many times as s/he wants by clicking the "Player One Rolls" button. Rolling a 7 or an 11 scores a point. Rolling snake eyes (one pip on each die) subtracts a point. After Player One decides to stop rolling, Player Two then rolls the same number of times as Player One. After both players have the same number of rolls, their scores are compared and a payout is calculated.
+        </p>
+      </div>
     </div>
 
-    <div>
+    <div class="container">
+    <div class="four columns">&nbsp;</div>
+    <div class="eight columns centerMe">
       <p id="winMessage"><b>Who is going to win?</b></p>
       <ul>
-      <li>Player One's Balance: <div id="oldBalanceOne">0</div></li>
-      <li>Player One's Rolls: <div id="oldRollCountOne">0</div></li>
+      <li>Player One's Balance: $<div class="inline" id="oldBalanceOne">0</div></li>
+      <li>Player One's Rolls: <div class="inline" id="oldRollCountOne">0</div></li>
       </ul>
 
       <ul>
-      <li>Player Two's Balance: <div id="oldBalanceTwo">0</div></li>
-      <li>Player Two's Rolls: <div id="oldRollCountTwo">0</div></li>
+      <li>Player Two's Balance: $<div class="inline" id="oldBalanceTwo">0</div></li>
+      <li>Player Two's Rolls: <div class="inline" id="oldRollCountTwo">0</div></li>
       </ul>
     </div>
-
-    <div class="diceImageContainer">
-      <img class="diceImage" id="diceOneImage" src='http://www.wpclipart.com/recreation/games/dice/die_face_1.png'>
-      <img class="diceImage" id="diceTwoImage" src='http://www.wpclipart.com/recreation/games/dice/die_face_1.png'>
+    <div class="four columns">&nbsp;</div>
     </div>
 
-    <div>
-      <button id="playerOneRollButton" class='rollButton'>Player One Roll</button>
-      <button id="playerTwoRollButton" class='rollButton'>Player Two Roll</button>
-      <button id="reset" class='rollButton' onclick="dice.reset();">Reset</button>
+    <div class="container">
+      <div class="three columns">&nbsp;</div>
+      <div class="ten columns">
+        <div class="diceImageContainer">
+          <img class="diceImage" id="diceOneImage" src='http://www.wpclipart.com/recreation/games/dice/die_face_1.png'>
+          <img class="diceImage" id="diceTwoImage" src='http://www.wpclipart.com/recreation/games/dice/die_face_1.png'>
+        </div>
+      <div class="three columns">&nbsp;</div>
+      </div>
+    </div>
+
+    <div class="container">
+    <div class="five columns">&nbsp;</div>
+      <div class="nine columns">
+        <button id="playerOneRollButton" class='rollButton'>Player One Roll</button>
+        <button id="playerTwoRollButton" class='rollButton'>Player Two Roll</button>
+        <button id="reset" class='rollButton' onclick="dice.reset();">Reset</button>
+      </div>
+    <div class="three columns">&nbsp;</div>
     </div>
 
 
